@@ -1,0 +1,1748 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280">
+<title>PawPedigree 视觉方案对比 · 3 选 1</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --font-zh: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", sans-serif;
+    --font-en: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+    --font-mono: "SF Mono", Menlo, "Courier New", monospace;
+  }
+
+  html, body {
+    font-family: var(--font-zh);
+    background: #f4f4f7;
+    color: #1a1a1a;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body { padding: 32px 24px 64px; }
+
+  /* ============ 页面头部 ============ */
+  .page-header {
+    max-width: 1280px;
+    margin: 0 auto 32px;
+    text-align: center;
+  }
+  .page-header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+  }
+  .page-header p {
+    color: #6b6b6b;
+    font-size: 15px;
+  }
+  .page-header .meta {
+    display: inline-flex;
+    gap: 16px;
+    margin-top: 16px;
+    padding: 8px 16px;
+    background: white;
+    border-radius: 999px;
+    font-size: 13px;
+    color: #6b6b6b;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .page-header .meta strong { color: #1a1a1a; }
+
+  /* ============ Tab 切换 ============ */
+  .view-switcher {
+    max-width: 1280px;
+    margin: 0 auto 32px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+  }
+  .view-switcher button {
+    padding: 8px 20px;
+    border: 1px solid #e5e5e5;
+    background: white;
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    color: #6b6b6b;
+    transition: all 0.2s;
+  }
+  .view-switcher button.active {
+    background: #1a1a1a;
+    color: white;
+    border-color: #1a1a1a;
+  }
+  .view-switcher button:hover:not(.active) {
+    background: #f4f4f7;
+  }
+
+  /* ============ 主比较网格 ============ */
+  .comparison {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .design-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .design-header {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 24px;
+    padding: 16px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .design-header .badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .design-header h2 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .design-header p {
+    font-size: 12px;
+    color: #6b6b6b;
+  }
+  .design-header .badge.a { background: #fce4dd; color: #c8392a; }
+  .design-header .badge.b { background: #dfe5fc; color: #2546c0; }
+  .design-header .badge.c { background: #ffe4ec; color: #d04680; }
+  .design-header .recommend {
+    display: inline-block;
+    margin-left: 6px;
+    background: linear-gradient(135deg, #FF8A3D, #FFCB47);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 700;
+  }
+
+  /* ============ 手机外壳 ============ */
+  .phone-stack { display: flex; flex-direction: column; gap: 20px; }
+
+  .phone {
+    width: 320px;
+    height: 640px;
+    border-radius: 44px;
+    padding: 14px;
+    background: #111;
+    box-shadow: 0 24px 48px -16px rgba(0,0,0,0.25), 0 0 0 1.5px #222;
+    position: relative;
+  }
+  .phone-screen {
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    overflow: hidden;
+    position: relative;
+    isolation: isolate;
+  }
+  .phone-label {
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1a1a1a;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    z-index: 10;
+  }
+
+  /* ===== 通用 iOS 顶部状态栏 ===== */
+  .status-bar {
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px;
+    font-size: 13px;
+    font-weight: 600;
+    position: relative;
+    z-index: 5;
+  }
+  .status-bar .icons { display: flex; gap: 4px; align-items: center; font-size: 11px; }
+
+  /* ===== 通用底部 Tab Bar ===== */
+  .tab-bar {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+    height: 56px;
+    border-radius: 28px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 10;
+  }
+  .tab-bar .tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 16px;
+  }
+  .tab-bar .tab .icon { font-size: 18px; }
+
+  /* ============ 方案 A · 朱印官府 ============ */
+  .design-a .phone-screen {
+    background:
+      radial-gradient(ellipse at top, #fdeed8 0%, #f8f1e4 60%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80'><filter id='n'><feTurbulence baseFrequency='0.9'/></filter><rect width='80' height='80' filter='url(%23n)' opacity='0.04'/></svg>");
+    color: #2A2520;
+  }
+  .design-a .nav-bar {
+    padding: 0 20px 16px;
+    border-bottom: 1px solid rgba(217,84,63,0.12);
+  }
+  .design-a .nav-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #D9543F;
+    letter-spacing: 1px;
+  }
+  .design-a .nav-subtitle {
+    font-size: 11px;
+    color: #7A6E60;
+    margin-top: 2px;
+    letter-spacing: 0.5px;
+  }
+  .design-a .nav-decoration {
+    display: inline-block;
+    margin-left: 6px;
+    font-size: 14px;
+  }
+
+  .design-a .content { padding: 20px; }
+  .design-a .entry-card {
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1.5px solid rgba(217,84,63,0.18);
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+  .design-a .entry-card::before {
+    content: "";
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(217,84,63,0.10), transparent 70%);
+  }
+  .design-a .entry-card .icon-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  .design-a .entry-card .icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #D9543F, #C9A04A);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+  .design-a .entry-card .title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #2A2520;
+  }
+  .design-a .entry-card .desc {
+    font-size: 11px;
+    color: #7A6E60;
+    margin-bottom: 10px;
+  }
+  .design-a .entry-card .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 12px;
+    background: #D9543F;
+    color: white;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .design-a .tab-bar {
+    background: rgba(255,255,255,0.65);
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    border: 1px solid rgba(217,84,63,0.12);
+  }
+  .design-a .tab.active { background: rgba(217,84,63,0.12); color: #D9543F; }
+  .design-a .tab { color: #7A6E60; }
+
+  /* 方案 A 鉴定中 */
+  .design-a .inference-content {
+    padding: 28px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    height: calc(100% - 40px);
+  }
+  .design-a .inference-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #2A2520;
+  }
+  .design-a .inference-photo {
+    width: 200px;
+    height: 200px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #ffd7a3, #ff9a52);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 80px;
+    box-shadow: 0 12px 24px -8px rgba(217,84,63,0.3);
+    position: relative;
+  }
+  .design-a .inference-photo::after {
+    content: "";
+    position: absolute;
+    inset: -8px;
+    border-radius: 20px;
+    border: 1.5px solid rgba(217,84,63,0.3);
+    border-style: dashed;
+  }
+  .design-a .progress-bar {
+    width: 220px;
+    height: 6px;
+    background: rgba(217,84,63,0.12);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .design-a .progress-bar .fill {
+    width: 70%;
+    height: 100%;
+    background: linear-gradient(90deg, #D9543F, #C9A04A);
+    border-radius: 3px;
+  }
+  .design-a .progress-text {
+    font-size: 12px;
+    color: #7A6E60;
+    margin-top: -8px;
+  }
+  .design-a .zhuyin-stamp {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #e87a65, #b03d2b);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    transform: rotate(-12deg);
+    box-shadow: 0 4px 12px rgba(176,61,43,0.4);
+    border: 2px solid rgba(255,255,255,0.5);
+    margin-top: 8px;
+  }
+  .design-a .zhuyin-stamp span { font-size: 18px; }
+
+  /* 方案 A 挂牌卡 */
+  .design-a .cert-bg {
+    padding: 24px 20px 76px;
+    height: 100%;
+    overflow: hidden;
+  }
+  .design-a .cert-card {
+    background: #fffbf2;
+    border: 2px solid #D9543F;
+    border-radius: 12px;
+    padding: 18px 16px;
+    box-shadow: 0 8px 20px -8px rgba(217,84,63,0.25), inset 0 0 0 1px rgba(201,160,74,0.4);
+    position: relative;
+    overflow: hidden;
+  }
+  .design-a .cert-card::before {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    border: 1px dashed rgba(201,160,74,0.4);
+    border-radius: 8px;
+    pointer-events: none;
+  }
+  .design-a .cert-card .badge-toy {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: #C9A04A;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 9px;
+    font-weight: 700;
+    z-index: 2;
+  }
+  .design-a .cert-card .cert-title {
+    text-align: center;
+    margin-bottom: 4px;
+  }
+  .design-a .cert-card .cert-title-zh {
+    font-size: 16px;
+    font-weight: 700;
+    color: #D9543F;
+    letter-spacing: 4px;
+  }
+  .design-a .cert-card .cert-title-en {
+    font-size: 9px;
+    color: #C9A04A;
+    letter-spacing: 2px;
+    margin-top: 2px;
+    font-family: var(--font-en);
+  }
+  .design-a .cert-card .cert-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #C9A04A 30%, #C9A04A 70%, transparent);
+    margin: 10px 0;
+  }
+  .design-a .cert-photo-row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+  .design-a .cert-photo {
+    width: 72px;
+    height: 92px;
+    border-radius: 4px;
+    background: linear-gradient(135deg, #ffd7a3, #ff9a52);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    border: 1px solid #C9A04A;
+    flex-shrink: 0;
+  }
+  .design-a .cert-fields { font-size: 11px; flex: 1; }
+  .design-a .cert-fields .field {
+    display: flex;
+    margin-bottom: 4px;
+    line-height: 1.5;
+  }
+  .design-a .cert-fields .label {
+    color: #7A6E60;
+    width: 48px;
+    flex-shrink: 0;
+    letter-spacing: 4px;
+    font-size: 10px;
+  }
+  .design-a .cert-fields .value {
+    color: #2A2520;
+    font-weight: 600;
+  }
+  .design-a .cert-fields .value.grade {
+    color: #D9543F;
+    font-weight: 700;
+  }
+  .design-a .cert-comment {
+    background: rgba(217,84,63,0.04);
+    padding: 8px 10px;
+    border-left: 2px solid #D9543F;
+    font-size: 10px;
+    color: #2A2520;
+    line-height: 1.6;
+    margin: 8px 0;
+  }
+  .design-a .cert-serial {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: #7A6E60;
+    text-align: center;
+    margin-top: 4px;
+  }
+  .design-a .cert-stamp {
+    position: absolute;
+    bottom: 90px;
+    right: 30px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #e87a65, #b03d2b);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 700;
+    transform: rotate(-15deg);
+    opacity: 0.85;
+    border: 1.5px solid rgba(255,255,255,0.4);
+    z-index: 3;
+  }
+  .design-a .cert-footer {
+    text-align: center;
+    font-size: 9px;
+    color: #C9A04A;
+    margin-top: 12px;
+    letter-spacing: 1px;
+  }
+
+  /* ============ 方案 B · 赛博实验室 ============ */
+  .design-b .phone-screen {
+    background:
+      radial-gradient(ellipse at top, #1a1d3e 0%, #0E0E1A 60%, #050510 100%);
+    color: #E5E7EB;
+  }
+  .design-b .phone-screen::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 80% 20%, rgba(74,111,255,0.18), transparent 50%),
+      radial-gradient(ellipse at 20% 70%, rgba(168,85,247,0.15), transparent 50%);
+    pointer-events: none;
+  }
+  .design-b .status-bar { color: #E5E7EB; }
+  .design-b .nav-bar {
+    padding: 0 20px 16px;
+    position: relative;
+    z-index: 2;
+  }
+  .design-b .nav-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: white;
+    letter-spacing: 2px;
+    font-family: var(--font-en);
+  }
+  .design-b .nav-title .accent {
+    color: #4A6FFF;
+    font-weight: 900;
+  }
+  .design-b .nav-subtitle {
+    font-size: 10px;
+    color: #9CA3AF;
+    margin-top: 2px;
+    letter-spacing: 1.5px;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+  }
+  .design-b .content { padding: 16px 20px; position: relative; z-index: 2; }
+
+  .design-b .section-label {
+    font-size: 10px;
+    color: #22D3EE;
+    font-family: var(--font-mono);
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+  .design-b .entry-card {
+    background: rgba(255,255,255,0.04);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(74,111,255,0.3);
+    border-radius: 14px;
+    padding: 14px;
+    margin-bottom: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+  .design-b .entry-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(74,111,255,0.1), transparent 60%);
+    pointer-events: none;
+  }
+  .design-b .entry-card .tag {
+    font-size: 9px;
+    color: #22D3EE;
+    font-family: var(--font-mono);
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .design-b .entry-card .title {
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 2px;
+  }
+  .design-b .entry-card .subtitle {
+    font-size: 10px;
+    color: #9CA3AF;
+    font-family: var(--font-mono);
+    margin-bottom: 10px;
+  }
+  .design-b .entry-card .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 5px 12px;
+    background: linear-gradient(135deg, #4A6FFF, #A855F7);
+    color: white;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 700;
+    font-family: var(--font-mono);
+    letter-spacing: 0.5px;
+    box-shadow: 0 0 16px rgba(74,111,255,0.4);
+  }
+
+  .design-b .tab-bar {
+    background: rgba(20,20,40,0.55);
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    border: 1px solid rgba(74,111,255,0.18);
+  }
+  .design-b .tab { color: #9CA3AF; font-family: var(--font-mono); letter-spacing: 0.5px; }
+  .design-b .tab.active { background: rgba(74,111,255,0.18); color: #4A6FFF; }
+
+  /* 方案 B 鉴定中 */
+  .design-b .inference-content {
+    padding: 28px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    position: relative;
+    z-index: 2;
+  }
+  .design-b .inference-title {
+    font-size: 14px;
+    font-weight: 800;
+    color: #22D3EE;
+    letter-spacing: 4px;
+    font-family: var(--font-mono);
+  }
+  .design-b .inference-photo {
+    width: 190px;
+    height: 190px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #ffd7a3, #ff9a52);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 76px;
+    position: relative;
+    box-shadow: 0 0 40px rgba(74,111,255,0.4), 0 0 0 1px rgba(74,111,255,0.5);
+  }
+  .design-b .inference-photo .scan-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 40%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #22D3EE, transparent);
+    box-shadow: 0 0 12px #22D3EE;
+  }
+  .design-b .inference-photo .dot {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22D3EE;
+    box-shadow: 0 0 8px #22D3EE;
+  }
+  .design-b .inference-photo .dot.d1 { top: 30%; left: 40%; }
+  .design-b .inference-photo .dot.d2 { top: 50%; right: 30%; }
+  .design-b .inference-photo .dot.d3 { bottom: 30%; left: 35%; }
+  .design-b .progress-list {
+    width: 100%;
+    font-family: var(--font-mono);
+    font-size: 10px;
+  }
+  .design-b .progress-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+    color: #9CA3AF;
+  }
+  .design-b .progress-row .arrow { color: #22D3EE; }
+  .design-b .progress-row .label { flex: 1; letter-spacing: 0.5px; }
+  .design-b .progress-row .value { color: #4A6FFF; font-weight: 700; }
+  .design-b .progress-row.done .value { color: #22D3EE; }
+  .design-b .confidence {
+    margin-top: 8px;
+    padding: 8px 16px;
+    background: rgba(74,111,255,0.12);
+    border: 1px solid rgba(74,111,255,0.3);
+    border-radius: 8px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: #4A6FFF;
+    letter-spacing: 1px;
+  }
+
+  /* 方案 B 挂牌卡 */
+  .design-b .cert-bg {
+    padding: 20px 16px 76px;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+  }
+  .design-b .cert-card {
+    background: linear-gradient(160deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(74,111,255,0.35);
+    border-radius: 18px;
+    padding: 16px 14px;
+    box-shadow: 0 0 40px rgba(74,111,255,0.18), inset 0 1px 0 rgba(255,255,255,0.1);
+    position: relative;
+  }
+  .design-b .cert-card .toy-label {
+    text-align: center;
+    font-size: 8px;
+    color: #22D3EE;
+    font-family: var(--font-mono);
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+  .design-b .cert-card .cert-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 12px;
+  }
+  .design-b .cert-card .cert-title h3 {
+    font-size: 15px;
+    font-weight: 800;
+    color: white;
+    letter-spacing: 1px;
+    font-family: var(--font-en);
+  }
+  .design-b .cert-card .cert-title .version {
+    font-size: 9px;
+    color: #9CA3AF;
+    font-family: var(--font-mono);
+  }
+  .design-b .cert-photo-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .design-b .cert-photo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ffd7a3, #ff9a52);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    border: 2px solid #4A6FFF;
+    box-shadow: 0 0 16px rgba(74,111,255,0.4);
+    flex-shrink: 0;
+  }
+  .design-b .cert-subject .key {
+    font-size: 9px;
+    color: #9CA3AF;
+    letter-spacing: 1.5px;
+    font-family: var(--font-mono);
+  }
+  .design-b .cert-subject .name {
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    margin-top: 2px;
+  }
+  .design-b .cert-subject .name-en {
+    font-size: 9px;
+    color: #22D3EE;
+    font-family: var(--font-mono);
+    letter-spacing: 1px;
+  }
+  .design-b .cert-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(74,111,255,0.4), transparent);
+    margin: 8px 0;
+  }
+  .design-b .cert-field {
+    margin-bottom: 8px;
+  }
+  .design-b .cert-field .field-key {
+    font-size: 9px;
+    color: #9CA3AF;
+    letter-spacing: 1.5px;
+    font-family: var(--font-mono);
+    margin-bottom: 2px;
+  }
+  .design-b .cert-field .field-val {
+    font-size: 11px;
+    color: white;
+  }
+  .design-b .cert-field .grade-stars {
+    display: inline-flex;
+    gap: 2px;
+    margin-right: 8px;
+    color: #4A6FFF;
+  }
+  .design-b .cert-saturation {
+    height: 4px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 4px;
+  }
+  .design-b .cert-saturation .fill {
+    width: 92%;
+    height: 100%;
+    background: linear-gradient(90deg, #4A6FFF, #22D3EE);
+    box-shadow: 0 0 8px #22D3EE;
+  }
+  .design-b .cert-analysis {
+    font-size: 10px;
+    color: #E5E7EB;
+    line-height: 1.6;
+    margin-top: 6px;
+  }
+  .design-b .cert-footer-b {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(74,111,255,0.2);
+    font-family: var(--font-mono);
+    font-size: 8px;
+    color: #9CA3AF;
+    letter-spacing: 1px;
+  }
+  .design-b .cert-footer-b div { margin-top: 2px; }
+
+  /* ============ 方案 C · 奶油绒感 ============ */
+  .design-c .phone-screen {
+    background:
+      radial-gradient(ellipse at top right, #ffe4ec 0%, transparent 40%),
+      radial-gradient(ellipse at bottom left, #ffe6d3 0%, transparent 50%),
+      #FFF8F0;
+    color: #1a1a1a;
+  }
+  .design-c .nav-bar {
+    padding: 0 20px 16px;
+  }
+  .design-c .nav-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: #1a1a1a;
+    letter-spacing: -0.5px;
+  }
+  .design-c .nav-title .heart {
+    font-size: 18px;
+    margin-left: 4px;
+  }
+  .design-c .nav-subtitle {
+    font-size: 12px;
+    color: #6b6b6b;
+    margin-top: 4px;
+  }
+  .design-c .content { padding: 8px 20px 20px; }
+
+  .design-c .section-label {
+    text-align: center;
+    font-size: 13px;
+    color: #6b6b6b;
+    margin: 16px 0;
+    font-weight: 600;
+  }
+  .design-c .entry-card {
+    background: white;
+    border-radius: 24px;
+    padding: 18px 16px;
+    margin-bottom: 12px;
+    box-shadow: 0 8px 24px -10px rgba(255,138,61,0.18), 0 0 0 1px rgba(255,194,209,0.4);
+    position: relative;
+    overflow: hidden;
+  }
+  .design-c .entry-card::after {
+    content: "❀";
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    color: #FFC2D1;
+    font-size: 16px;
+  }
+  .design-c .entry-card .icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #FFE4D5, #FFC2D1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+  .design-c .entry-card .title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+  }
+  .design-c .entry-card .divider-mini {
+    width: 24px;
+    height: 2px;
+    background: #FFC2D1;
+    border-radius: 1px;
+    margin: 6px 0;
+  }
+  .design-c .entry-card .desc {
+    font-size: 11px;
+    color: #6b6b6b;
+    margin-bottom: 12px;
+  }
+  .design-c .entry-card .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 18px;
+    background: #FF8A3D;
+    color: white;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    box-shadow: 0 4px 12px -2px rgba(255,138,61,0.4);
+  }
+
+  .design-c .tab-bar {
+    background: rgba(255,255,255,0.55);
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    border: 1px solid rgba(255,194,209,0.4);
+    box-shadow: 0 8px 20px -8px rgba(255,138,61,0.15);
+  }
+  .design-c .tab { color: #6b6b6b; }
+  .design-c .tab.active { background: rgba(255,138,61,0.10); color: #FF8A3D; }
+
+  /* 方案 C 鉴定中 */
+  .design-c .inference-content {
+    padding: 32px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  .design-c .inference-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a1a1a;
+  }
+  .design-c .inference-photo {
+    width: 200px;
+    height: 200px;
+    border-radius: 32px;
+    background: linear-gradient(135deg, #ffd7a3, #ff9a52);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 80px;
+    position: relative;
+    box-shadow: 0 12px 30px -8px rgba(255,138,61,0.4);
+  }
+  .design-c .inference-photo::before {
+    content: "✨";
+    position: absolute;
+    top: -16px;
+    right: -8px;
+    font-size: 28px;
+  }
+  .design-c .inference-photo::after {
+    content: "❀";
+    position: absolute;
+    bottom: -8px;
+    left: -12px;
+    font-size: 24px;
+    color: #FFC2D1;
+  }
+  .design-c .progress-dots {
+    display: flex;
+    gap: 6px;
+    margin: 12px 0;
+  }
+  .design-c .progress-dots .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255,138,61,0.2);
+  }
+  .design-c .progress-dots .dot.filled {
+    background: #FF8A3D;
+    box-shadow: 0 0 8px rgba(255,138,61,0.5);
+  }
+  .design-c .progress-text-c {
+    font-size: 13px;
+    color: #6b6b6b;
+    font-weight: 600;
+  }
+  .design-c .progress-text-c .pct {
+    color: #FF8A3D;
+    font-weight: 700;
+  }
+  .design-c .inference-hint {
+    margin-top: 12px;
+    padding: 8px 16px;
+    background: white;
+    border-radius: 999px;
+    font-size: 11px;
+    color: #6b6b6b;
+    box-shadow: 0 2px 8px rgba(255,138,61,0.10);
+  }
+
+  /* 方案 C 挂牌卡 */
+  .design-c .cert-bg {
+    padding: 16px 16px 76px;
+    height: 100%;
+    overflow: hidden;
+  }
+  .design-c .cert-card {
+    background: white;
+    border-radius: 24px;
+    padding: 20px 18px;
+    box-shadow: 0 12px 32px -8px rgba(255,138,61,0.18), 0 0 0 1px rgba(255,194,209,0.4);
+    position: relative;
+    overflow: hidden;
+  }
+  .design-c .cert-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #FF8A3D, #FFC2D1, #FFCB47);
+  }
+  .design-c .toy-badge {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: linear-gradient(135deg, #FFC2D1, #FFCB47);
+    color: white;
+    padding: 3px 9px;
+    border-radius: 999px;
+    font-size: 9px;
+    font-weight: 700;
+  }
+  .design-c .cert-title-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 4px;
+  }
+  .design-c .cert-title-row h3 {
+    font-size: 17px;
+    font-weight: 800;
+    color: #FF8A3D;
+  }
+  .design-c .cert-title-row .star {
+    font-size: 16px;
+  }
+  .design-c .cert-subtitle {
+    font-size: 10px;
+    color: #6b6b6b;
+    letter-spacing: 1px;
+    font-family: var(--font-en);
+    margin-bottom: 10px;
+  }
+  .design-c .cert-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #FFC2D1 30%, #FFC2D1 70%, transparent);
+    margin: 8px 0 12px;
+  }
+  .design-c .cert-photo-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+    align-items: center;
+  }
+  .design-c .cert-photo {
+    width: 76px;
+    height: 76px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #ffd7a3, #ff9a52);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    box-shadow: 0 4px 12px -4px rgba(255,138,61,0.3);
+    flex-shrink: 0;
+  }
+  .design-c .cert-fields {
+    flex: 1;
+    font-size: 11px;
+  }
+  .design-c .cert-fields .field {
+    display: flex;
+    margin-bottom: 4px;
+    align-items: center;
+  }
+  .design-c .cert-fields .label {
+    color: #6b6b6b;
+    width: 36px;
+    flex-shrink: 0;
+    font-size: 10px;
+  }
+  .design-c .cert-fields .value {
+    color: #1a1a1a;
+    font-weight: 600;
+  }
+  .design-c .cert-fields .stars {
+    color: #FFCB47;
+    letter-spacing: 1px;
+    font-size: 11px;
+  }
+  .design-c .cert-fields .grade {
+    color: #FF8A3D;
+    font-weight: 800;
+    margin-left: 4px;
+    font-size: 11px;
+  }
+  .design-c .cert-color-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,194,209,0.15);
+    border-radius: 12px;
+    padding: 8px 12px;
+    margin: 8px 0;
+    font-size: 11px;
+  }
+  .design-c .cert-color-row .emoji { font-size: 14px; }
+  .design-c .cert-color-row .lbl { color: #6b6b6b; }
+  .design-c .cert-color-row .val { color: #1a1a1a; font-weight: 600; }
+  .design-c .cert-comment-c {
+    margin-top: 8px;
+  }
+  .design-c .cert-comment-c .heading {
+    font-size: 11px;
+    color: #FF8A3D;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .design-c .cert-comment-c .heading .line {
+    display: inline-block;
+    width: 20px;
+    height: 1px;
+    background: #FFC2D1;
+    vertical-align: middle;
+    margin: 0 4px;
+  }
+  .design-c .cert-comment-c .text {
+    font-size: 10.5px;
+    color: #1a1a1a;
+    line-height: 1.65;
+    padding: 8px 10px;
+    background: rgba(255,248,240,0.7);
+    border-radius: 10px;
+  }
+  .design-c .cert-serial-c {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: #6b6b6b;
+    text-align: center;
+    margin-top: 10px;
+  }
+  .design-c .cert-decoration {
+    text-align: center;
+    color: #FFC2D1;
+    font-size: 11px;
+    letter-spacing: 4px;
+    margin-top: 6px;
+  }
+  .design-c .cert-footer-c {
+    text-align: center;
+    font-size: 9px;
+    color: #6b6b6b;
+    margin-top: 8px;
+  }
+
+  /* ============ 评估表 ============ */
+  .scorecard {
+    max-width: 1280px;
+    margin: 48px auto 0;
+    background: white;
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .scorecard h3 {
+    font-size: 18px;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .scorecard table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .scorecard th, .scorecard td {
+    padding: 10px 8px;
+    text-align: center;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .scorecard th { font-weight: 700; color: #6b6b6b; font-size: 12px; }
+  .scorecard td.dim { text-align: left; color: #6b6b6b; font-weight: 600; }
+  .scorecard .stars { color: #FFCB47; letter-spacing: 1px; }
+  .scorecard .star-d { color: #d4d4d4; }
+  .scorecard tr.highlight { background: #fff8f0; }
+  .scorecard .label-row {
+    background: #f8f8fb;
+    font-weight: 700;
+    text-align: center !important;
+  }
+  .scorecard .recommendation {
+    margin-top: 24px;
+    padding: 16px 20px;
+    background: linear-gradient(135deg, #fff8f0, #ffe4ec);
+    border-radius: 14px;
+    font-size: 14px;
+    line-height: 1.7;
+    border-left: 4px solid #FF8A3D;
+  }
+  .scorecard .recommendation strong { color: #FF8A3D; }
+
+  /* 选择按钮 */
+  .decision-row {
+    max-width: 1280px;
+    margin: 32px auto 0;
+    text-align: center;
+  }
+  .decision-row p {
+    font-size: 14px;
+    color: #6b6b6b;
+    margin-bottom: 16px;
+  }
+  .decision-row .pills {
+    display: inline-flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .decision-row .pill {
+    padding: 10px 20px;
+    border-radius: 999px;
+    background: white;
+    border: 1.5px solid #e5e5e5;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a1a;
+  }
+  .decision-row .pill.recommend {
+    background: linear-gradient(135deg, #FF8A3D, #FFCB47);
+    border-color: transparent;
+    color: white;
+  }
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <h1>PawPedigree · 视觉方案对比</h1>
+  <p>iOS 26 Liquid Glass · 萌宠品相鉴定馆 V1</p>
+  <div class="meta">
+    <span>3 方案 × 3 核心页面</span>
+    <span>·</span>
+    <span><strong>2026-05-16</strong></span>
+  </div>
+</header>
+
+<main class="comparison">
+
+  <!-- ============================== 方案 A · 朱印官府 ============================== -->
+  <section class="design-column design-a">
+    <div class="design-header">
+      <span class="badge a">方案 A</span>
+      <h2>朱印官府</h2>
+      <p>传统权威 + 萌宠反差</p>
+    </div>
+
+    <div class="phone-stack">
+
+      <!-- A · 首页 -->
+      <div class="phone">
+        <span class="phone-label">首页</span>
+        <div class="phone-screen">
+          <div class="status-bar">
+            <span>9:41</span>
+            <span class="icons">●●● ◐ 100%</span>
+          </div>
+          <div class="nav-bar">
+            <div class="nav-title">PawPedigree 鉴定馆<span class="nav-decoration">🔖</span></div>
+            <div class="nav-subtitle">给家里的小明星办张鉴定</div>
+          </div>
+          <div class="content">
+            <div class="entry-card">
+              <div class="icon-row">
+                <div class="icon">🔖</div>
+                <div class="title">血统鉴定</div>
+              </div>
+              <div class="desc">品种 · 毛色 · 血统等级</div>
+              <div class="cta">立即鉴定 ▶</div>
+            </div>
+            <div class="entry-card">
+              <div class="icon-row">
+                <div class="icon">✨</div>
+                <div class="title">颜值鉴定</div>
+              </div>
+              <div class="desc">面相 · 颜值 · 萌点分析</div>
+              <div class="cta">立即鉴定 ▶</div>
+            </div>
+            <div class="entry-card">
+              <div class="icon-row">
+                <div class="icon">🐾</div>
+                <div class="title">性格画像</div>
+              </div>
+              <div class="desc">小脾气 · 星座解读</div>
+              <div class="cta">立即鉴定 ▶</div>
+            </div>
+          </div>
+          <div class="tab-bar">
+            <div class="tab active"><span class="icon">🏛</span><span>鉴定馆</span></div>
+            <div class="tab"><span class="icon">📜</span><span>我的鉴定本</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- A · 鉴定中 -->
+      <div class="phone">
+        <span class="phone-label">鉴定中</span>
+        <div class="phone-screen">
+          <div class="status-bar">
+            <span>9:41</span>
+            <span class="icons">●●● ◐ 100%</span>
+          </div>
+          <div class="inference-content">
+            <div class="inference-title">🐾 鉴定进行中</div>
+            <div class="inference-photo">🐱</div>
+            <div class="progress-bar"><div class="fill"></div></div>
+            <div class="progress-text">正在加盖官府公章… 70%</div>
+            <div class="zhuyin-stamp"><span>朱</span><span>印</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- A · 挂牌卡 -->
+      <div class="phone">
+        <span class="phone-label">血统鉴定书</span>
+        <div class="phone-screen">
+          <div class="status-bar">
+            <span>9:41</span>
+            <span class="icons">●●● ◐ 100%</span>
+          </div>
+          <div class="cert-bg">
+            <div class="cert-card">
+              <div class="badge-toy">仅供娱乐</div>
+              <div class="cert-title">
+                <div class="cert-title-zh">萌宠品相鉴定书</div>
+                <div class="cert-title-en">PEDIGREE CERTIFICATE</div>
+              </div>
+              <div class="cert-divider"></div>
+              <div class="cert-photo-row">
+                <div class="cert-photo">🐱</div>
+                <div class="cert-fields">
+                  <div class="field"><span class="label">姓名</span><span class="value">糖糖</span></div>
+                  <div class="field"><span class="label">品种</span><span class="value">中华田园猫</span></div>
+                  <div class="field"><span class="label">血统</span><span class="value grade">SSR 级</span></div>
+                  <div class="field"><span class="label">毛色</span><span class="value">橘金 · 92%</span></div>
+                </div>
+              </div>
+              <div class="cert-comment">
+                此猫眉眼带星，骨相端正，是难得一见的"村霸气质 + 御猫风骨"复合品相，建议主人善加供奉小鱼干。
+              </div>
+              <div class="cert-serial">PP-2026-0516-7E3A2B-9F</div>
+            </div>
+            <div class="cert-stamp">朱印<br>真</div>
+            <div class="cert-footer">made with PawPedigree · 鉴定馆</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================== 方案 B · 赛博实验室 ============================== -->
+  <section class="design-column design-b">
+    <div class="design-header">
+      <span class="badge b">方案 B</span>
+      <h2>赛博实验室</h2>
+      <p>AI 黑科技 + 严肃鉴定</p>
+    </div>
+
+    <div class="phone-stack">
+
+      <!-- B · 首页 -->
+      <div class="phone">
+        <span class="phone-label">首页</span>
+        <div class="phone-screen">
+          <div class="status-bar">
+            <span>9:41</span>
+            <span class="icons">●●● ◐ 100%</span>
+          </div>
+          <div class="nav-bar">
+            <div class="nav-title">PawPedigree<span class="accent"> LAB</span></div>
+            <div class="nav-subtitle">AI Pet Pedigree Laboratory</div>
+          </div>
+          <div class="content">
+            <div class="section-label">★ Select Module</div>
+            <div class="entry-card">
+              <div class="tag">▓▓ MODULE 01</div>
+              <div class="title">PEDIGREE</div>
+              <div class="subtitle">血统鉴定 · DNA Trace</div>
+              <div class="cta">⚡ INITIATE ▶</div>
+            </div>
+            <div class="entry-card">
+              <div class="tag">▓▓ MODULE 02</div>
+              <div class="title">BEAUTY</div>
+              <div class="subtitle">颜值鉴定 · Aesthetic Algo</div>
+              <div class="cta">⚡ INITIATE ▶</div>
+            </div>
+            <div class="entry-card">
+              <div class="tag">▓▓ MODULE 03</div>
+              <div class="title">PERSONALITY</div>
+              <div class="subtitle">性格画像 · Behavior Profile</div>
+              <div class="cta">⚡ INITIATE ▶</div>
+            </div>
+          </div>
+          <div class="tab-bar">
+            <div class="tab active"><span class="icon">⚡</span><span>LAB</span></div>
+            <div class="tab"><span class="icon">💾</span><span>ARCHIVE</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- B · 鉴定中 -->
+      <div class="phone">
+        <span class="phone-label">鉴定中</span>
+        <div class="phone-screen">
+          <div class="status-bar">
+            <span>9:41</span>
+            <span class="icons">●●● ◐ 100%</span>
+          </div>
+          <div class="inference-content">
+            <div class="inference-title">⚡ ANALYZING</div>
+            <div class="inference-photo">
+              🐱
+              <div class="scan-line"></div>
+              <div class="dot d1"></div>
+              <div class="dot d2"></div>
+              <div class="dot d3"></div>
+            </div>
+            <div class="progress-list">
+              <div class="progress-row done">
+                <span class="arrow">►</span>
+                <span class="label">Feature Extraction</span>
+                <span class="value">100%</span>
+              </div>
+              <div class="progress-row done">
+                <span class="arrow">►</span>
+                <span class="label">Breed Classification</span>
+                <span class="value">100%</span>
+              </div>
+              <div class="progress-row">
+                <span class="arrow">►</span>
+                <span class="label">Pedigree Scoring</span>
+                <span class="value">45%</span>
+              </div>
+            </div>
+            <div class="confidence">⊙ Confidence 87.3%</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- B · 挂牌卡 -->
+      <div class="phone">
+        <span class="phone-label">血统报告</span>
+        <div class="phone-screen">
+          <div class="status-bar">
+            <span>9:41</span>
+            <span class="icons">●●● ◐ 100%</span>
+          </div>
+          <div class="cert-bg">
+            <div class="cert-card">
+              <div class="toy-label">░▒▓ NOT A REAL CERTIFICATE ▓▒░</div>
+              <div class="cert-title">
+                <h3>PEDIGREE REPORT</h3>
+                <span class="version">v1.0</span>
+              </div>
+              <div class="cert-photo-row">
+                <div class="cert-photo">🐱</div>
+                <div class="cert-subject">
+                  <div class="key">SUBJECT</div>
+                  <div class="name">糖糖</div>
+                  <div class="name-en">TANGTANG</div>
+                </div>
+              </div>
+              <div class="cert-divider"></div>
+              <div class="cert-field">
+                <div class="field-key">SPECIES</div>
+                <div class="field-val">中华田园猫 · Domestic SH</div>
+              </div>
+              <div class="cert-field">
+                <div class="field-key">GRADE</div>
+                <div class="field-val"><span class="grade-stars">★★★★★</span><strong style="color:#22D3EE">SSR</strong></div>
+              </div>
+              <div class="cert-field">
+                <div class="field-key">COAT COLOR</div>
+                <div class="field-val">橘金 · 92% saturation</div>
+                <div class="cert-saturation"><div class="fill"></div></div>
+              </div>
+              <div class="cert-field">
+                <div class="field-key">ANALYSIS</div>
+                <div class="cert-analysis">
+                  Subject exhibits exceptional "village dominator + royal feline" hybrid traits. Recommend immediate treat supplementation.
+                </div>
+              </div>
+              <div class="cert-footer-b">
+                <div>ID: PP-2026-0516-7E3A2B-9F</div>
+                <div>GENERATED BY PawPedigree AI</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================== 方案 C · 奶油绒感 ============================== -->
+  <section class="design-column design-c">
+    <div class="design-header">
+      <span class="badge c">方案 C</span>
+      <h2>奶油绒感<span class="recommend">推荐</span></h2>
+      <p>治愈温暖 + 可爱认证</p>
+    </div>
+
+    <div class="phone-stack">
+
+      <!-- C · 首页 -->
+      <div class="phone">
+        <span class="phone-label">首页</span>
+        <div class="phone-screen">
+          <div class="status-bar">
+            <span>9:41</span>
+            <span class="icons">●●● ◐ 100%</span>
+          </div>
+          <div class="nav-bar">
+            <div class="nav-title">PawPedigree<span class="heart">❤️</span></div>
+            <div class="nav-subtitle">萌宠品相鉴定馆 · 给小明星办张鉴定 🐾</div>
+          </div>
+          <div class="content">
+            <div class="section-label">✨ 选择鉴定类型 ✨</div>
+            <div class="entry-card">
+              <div class="icon">🔖</div>
+              <div class="title">血统鉴定</div>
+              <div class="divider-mini"></div>
+              <div class="desc">品种 · 毛色 · 血统等级</div>
+              <div class="cta">开始鉴定 →</div>
+            </div>
+            <div class="entry-card">
+              <div class="icon">✨</div>
+              <div class="title">颜值鉴定</div>
+              <div class="divider-mini"></div>
+              <div class="desc">面相 · 颜值 · 萌点分析</div>
+              <div class="cta">开始鉴定 →</div>
+            </div>
+            <div class="entry-card">
+              <div class="icon">🐾</div>
+              <div class="title">性格画像</div>
+              <div class="divider-mini"></div>
+              <div class="desc">小脾气 · 星座解读</div>
+              <div class="cta">开始鉴定 →</div>
+            </div>
+          </div>
+          <div class="tab-bar">
+            <div class="tab active"><span class="icon">🏠</span><span>鉴定馆</span></div>
+            <div class="tab"><span class="icon">📖</span><span>我的本本</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- C · 鉴定中 -->
+      <div class="phone">
+        <span class="phone-label">鉴定中</span>
+        <div class="phone-screen">
+          <div class="status-bar">
+            <span>9:41</span>
+            <span class="icons">●●● ◐ 100%</span>
+          </div>
+          <div class="inference-content">
+            <div class="inference-title">正在加盖公章… 🐾</div>
+            <div class="inference-photo">🐱</div>
+            <div class="progress-dots">
+              <span class="dot filled"></span>
+              <span class="dot filled"></span>
+              <span class="dot filled"></span>
+              <span class="dot filled"></span>
+              <span class="dot filled"></span>
+              <span class="dot filled"></span>
+              <span class="dot filled"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+            <div class="progress-text-c">小爪印盖章中 <span class="pct">70%</span></div>
+            <div class="inference-hint">◌ 鉴定结果即将揭晓 ◌</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- C · 挂牌卡 -->
+      <div class="phone">
+        <span class="phone-label">血统鉴定书</span>
+        <div class="phone-screen">
+          <div class="status-bar">
+            <span>9:41</span>
+            <span class="icons">●●● ◐ 100%</span>
+          </div>
+          <div class="cert-bg">
+            <div class="cert-card">
+              <div class="toy-badge">仅供娱乐 ❀</div>
+              <div class="cert-title-row">
+                <span class="star">🌟</span>
+                <h3>萌宠品相鉴定书</h3>
+              </div>
+              <div class="cert-subtitle">PawPedigree Certificate</div>
+              <div class="cert-divider"></div>
+              <div class="cert-photo-row">
+                <div class="cert-photo">🐱</div>
+                <div class="cert-fields">
+                  <div class="field"><span class="label">姓名</span><span class="value">糖糖</span></div>
+                  <div class="field"><span class="label">品种</span><span class="value">中华田园猫</span></div>
+                  <div class="field"><span class="label">血统</span><span class="stars">★★★★★</span><span class="grade">SSR</span></div>
+                </div>
+              </div>
+              <div class="cert-color-row">
+                <span class="emoji">🎨</span>
+                <span class="lbl">毛色</span>
+                <span class="val">橘金奶茶色 · 饱和度 92%</span>
+              </div>
+              <div class="cert-comment-c">
+                <div class="heading"><span class="line"></span>💝 血统点评<span class="line"></span></div>
+                <div class="text">糖糖眉眼带星，骨相端正，是难得一见的「村霸气质 + 御猫风骨」复合品相，建议主人多多供奉小鱼干。</div>
+              </div>
+              <div class="cert-serial-c">PP-2026-0516-7E3A2B-9F</div>
+              <div class="cert-decoration">❀ ❀ ❀</div>
+              <div class="cert-footer-c">made with PawPedigree 🐾</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- ============== 评估表 ============== -->
+<section class="scorecard">
+  <h3>三方案评估矩阵</h3>
+  <table>
+    <tr>
+      <th style="text-align:left">评估维度</th>
+      <th>A · 朱印官府</th>
+      <th>B · 赛博实验室</th>
+      <th>C · 奶油绒感</th>
+    </tr>
+    <tr>
+      <td class="dim">小红书女性审美契合</td>
+      <td><span class="stars">★★★<span class="star-d">★★</span></span></td>
+      <td><span class="stars">★★<span class="star-d">★★★</span></span></td>
+      <td class="highlight"><span class="stars">★★★★★</span></td>
+    </tr>
+    <tr>
+      <td class="dim">鉴定权威感</td>
+      <td><span class="stars">★★★★★</span></td>
+      <td><span class="stars">★★★★★</span></td>
+      <td><span class="stars">★★★<span class="star-d">★★</span></span></td>
+    </tr>
+    <tr>
+      <td class="dim">iOS 26 玻璃质感充分度</td>
+      <td><span class="stars">★★★★<span class="star-d">★</span></span></td>
+      <td><span class="stars">★★★★★</span></td>
+      <td><span class="stars">★★★<span class="star-d">★★</span></span></td>
+    </tr>
+    <tr>
+      <td class="dim">实现难度（越低越好）</td>
+      <td>中</td>
+      <td>高</td>
+      <td class="highlight">低</td>
+    </tr>
+    <tr>
+      <td class="dim">与 BRIEF §6 哲学兼容</td>
+      <td><span class="stars">★★★★<span class="star-d">★</span></span></td>
+      <td><span class="stars">★★<span class="star-d">★★★</span></span></td>
+      <td class="highlight"><span class="stars">★★★★★</span></td>
+    </tr>
+    <tr>
+      <td class="dim">男性接受度</td>
+      <td><span class="stars">★★★★<span class="star-d">★</span></span></td>
+      <td><span class="stars">★★★★★</span></td>
+      <td><span class="stars">★★<span class="star-d">★★★</span></span></td>
+    </tr>
+    <tr>
+      <td class="dim">适合小红书宠物笔记</td>
+      <td><span class="stars">★★★<span class="star-d">★★</span></span></td>
+      <td><span class="stars">★★<span class="star-d">★★★</span></span></td>
+      <td class="highlight"><span class="stars">★★★★★</span></td>
+    </tr>
+    <tr>
+      <td class="dim">适合科技博主转发</td>
+      <td><span class="stars">★★★<span class="star-d">★★</span></span></td>
+      <td><span class="stars">★★★★★</span></td>
+      <td><span class="stars">★★<span class="star-d">★★★</span></span></td>
+    </tr>
+  </table>
+
+  <div class="recommendation">
+    <strong>💡 推荐 → 方案 C 奶油绒感</strong><br>
+    1) SPEC §2.1 锁定 70% 女性 18-35 岁小红书用户，C 方案视觉对齐<br>
+    2) BRIEF §9 的小红书冷启动策略，C 方案挂牌卡天然是爆款素材<br>
+    3) 4-5 周 MVP 窗口紧张，C 方案实现成本最低<br>
+    4) "可爱外壳 + 鉴定文案反差"是 C 方案的差异化武器——"村霸气质 + 御猫风骨"打在奶油色证书上反差感最强
+  </div>
+</section>
+
+<!-- ============== 决策栏 ============== -->
+<section class="decision-row">
+  <p>请告诉我你的选择，确认后进入「人工检查点 ② 技术方案对比」</p>
+  <div class="pills">
+    <span class="pill">🅰️ 朱印官府</span>
+    <span class="pill">🅱️ 赛博实验室</span>
+    <span class="pill recommend">🅲️ 奶油绒感（推荐）</span>
+    <span class="pill">🔀 想做混合</span>
+    <span class="pill">❌ 都不满意</span>
+  </div>
+</section>
+
+</body>
+</html>
