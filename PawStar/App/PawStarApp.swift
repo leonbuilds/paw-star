@@ -25,8 +25,6 @@ struct PawStarApp: App {
 
 struct RootView: View {
     var body: some View {
-        Text("PawPedigree · 即将上线 🐾")
-            .font(Theme.Font.title())
-            .foregroundStyle(Theme.Color.primary)
+        HomeView()
     }
 }
