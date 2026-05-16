@@ -4,7 +4,7 @@ import Observation
 
 @Observable
 final class HomeViewModel {
-    var greeting: String = "给家里的小明星办张鉴定"
-
-    init() {}
+    var greeting: String = "你好，铲屎官 👋"
+    var recentRecords: [CertificateRecord] = []
+    var isLoading: Bool = false
 }
