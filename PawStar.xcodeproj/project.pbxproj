@@ -1,0 +1,700 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AA000001000000000000000A /* PawStarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000000B /* PawStarApp.swift */; };
+		AA000002000000000000000A /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000002000000000000000B /* Theme.swift */; };
+		AA000003000000000000000A /* PetProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000003000000000000000B /* PetProfile.swift */; };
+		AA000004000000000000000A /* CertificateRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000004000000000000000B /* CertificateRecord.swift */; };
+		AA000005000000000000000A /* AIResultPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000005000000000000000B /* AIResultPayload.swift */; };
+		AA000006000000000000000A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000006000000000000000B /* HomeView.swift */; };
+		AA000007000000000000000A /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000007000000000000000B /* HomeViewModel.swift */; };
+		AA000008000000000000000A /* PhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000008000000000000000B /* PhotoPickerView.swift */; };
+		AA000009000000000000000A /* IDCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000009000000000000000B /* IDCardView.swift */; };
+		AA00000A000000000000000A /* DrivingLicenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00000A000000000000000B /* DrivingLicenseView.swift */; };
+		AA00000B000000000000000A /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00000B000000000000000B /* PreviewView.swift */; };
+		AA00000C000000000000000A /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00000C000000000000000B /* HistoryView.swift */; };
+		AA00000D000000000000000A /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00000D000000000000000B /* NetworkService.swift */; };
+		AA00000E000000000000000A /* ImageProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00000E000000000000000B /* ImageProcessor.swift */; };
+		AA00000F000000000000000A /* FallbackProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00000F000000000000000B /* FallbackProvider.swift */; };
+		AA000010000000000000000A /* SerialNumberGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000010000000000000000B /* SerialNumberGenerator.swift */; };
+		AA000011000000000000000A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA000011000000000000000B /* Assets.xcassets */; };
+		AA000012000000000000000A /* SwiftData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA000012000000000000000B /* SwiftData.framework */; };
+		AA000020000000000000000A /* PawStarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000020000000000000000B /* PawStarTests.swift */; };
+		AA000030000000000000000A /* PawStarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000030000000000000000B /* PawStarUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		AA000001000000000000000B /* PawStarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PawStarApp.swift; sourceTree = "<group>"; };
+		AA000002000000000000000B /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		AA000003000000000000000B /* PetProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetProfile.swift; sourceTree = "<group>"; };
+		AA000004000000000000000B /* CertificateRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateRecord.swift; sourceTree = "<group>"; };
+		AA000005000000000000000B /* AIResultPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIResultPayload.swift; sourceTree = "<group>"; };
+		AA000006000000000000000B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		AA000007000000000000000B /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		AA000008000000000000000B /* PhotoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerView.swift; sourceTree = "<group>"; };
+		AA000009000000000000000B /* IDCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDCardView.swift; sourceTree = "<group>"; };
+		AA00000A000000000000000B /* DrivingLicenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrivingLicenseView.swift; sourceTree = "<group>"; };
+		AA00000B000000000000000B /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
+		AA00000C000000000000000B /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		AA00000D000000000000000B /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		AA00000E000000000000000B /* ImageProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessor.swift; sourceTree = "<group>"; };
+		AA00000F000000000000000B /* FallbackProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallbackProvider.swift; sourceTree = "<group>"; };
+		AA000010000000000000000B /* SerialNumberGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerialNumberGenerator.swift; sourceTree = "<group>"; };
+		AA000011000000000000000B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AA000012000000000000000B /* SwiftData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftData.framework; path = System/Library/Frameworks/SwiftData.framework; sourceTree = SDKROOT; };
+		AA000013000000000000000B /* PawStar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PawStar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA000020000000000000000B /* PawStarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PawStarTests.swift; sourceTree = "<group>"; };
+		AA000021000000000000000B /* PawStarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PawStarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA000030000000000000000B /* PawStarUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PawStarUITests.swift; sourceTree = "<group>"; };
+		AA000031000000000000000B /* PawStarUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PawStarUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AA000040000000000000000A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA000012000000000000000A /* SwiftData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AA000050000000000000000A /* PawStar */ = {
+			isa = PBXGroup;
+			children = (
+				AA000051000000000000000A /* App */,
+				AA000052000000000000000A /* Theme */,
+				AA000053000000000000000A /* Models */,
+				AA000054000000000000000A /* Features */,
+				AA000058000000000000000A /* Services */,
+				AA000059000000000000000A /* Utilities */,
+				AA00005A000000000000000A /* Resources */,
+			);
+			path = PawStar;
+			sourceTree = "<group>";
+		};
+		AA000051000000000000000A /* App */ = {
+			isa = PBXGroup;
+			children = (
+				AA000001000000000000000B /* PawStarApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		AA000052000000000000000A /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				AA000002000000000000000B /* Theme.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		AA000053000000000000000A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AA000003000000000000000B /* PetProfile.swift */,
+				AA000004000000000000000B /* CertificateRecord.swift */,
+				AA000005000000000000000B /* AIResultPayload.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AA000054000000000000000A /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				AA000055000000000000000A /* Home */,
+				AA000056000000000000000A /* Create */,
+				AA000057000000000000000A /* Cards */,
+				AA00005B000000000000000A /* Preview */,
+				AA00005C000000000000000A /* History */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		AA000055000000000000000A /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				AA000006000000000000000B /* HomeView.swift */,
+				AA000007000000000000000B /* HomeViewModel.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		AA000056000000000000000A /* Create */ = {
+			isa = PBXGroup;
+			children = (
+				AA000008000000000000000B /* PhotoPickerView.swift */,
+			);
+			path = Create;
+			sourceTree = "<group>";
+		};
+		AA000057000000000000000A /* Cards */ = {
+			isa = PBXGroup;
+			children = (
+				AA000009000000000000000B /* IDCardView.swift */,
+				AA00000A000000000000000B /* DrivingLicenseView.swift */,
+			);
+			path = Cards;
+			sourceTree = "<group>";
+		};
+		AA00005B000000000000000A /* Preview */ = {
+			isa = PBXGroup;
+			children = (
+				AA00000B000000000000000B /* PreviewView.swift */,
+			);
+			path = Preview;
+			sourceTree = "<group>";
+		};
+		AA00005C000000000000000A /* History */ = {
+			isa = PBXGroup;
+			children = (
+				AA00000C000000000000000B /* HistoryView.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		AA000058000000000000000A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				AA00000D000000000000000B /* NetworkService.swift */,
+				AA00000E000000000000000B /* ImageProcessor.swift */,
+				AA00000F000000000000000B /* FallbackProvider.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		AA000059000000000000000A /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				AA000010000000000000000B /* SerialNumberGenerator.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		AA00005A000000000000000A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AA000011000000000000000B /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		AA000060000000000000000A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AA000012000000000000000B /* SwiftData.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AA000070000000000000000A /* PawStarTests */ = {
+			isa = PBXGroup;
+			children = (
+				AA000020000000000000000B /* PawStarTests.swift */,
+			);
+			path = PawStarTests;
+			sourceTree = "<group>";
+		};
+		AA000080000000000000000A /* PawStarUITests */ = {
+			isa = PBXGroup;
+			children = (
+				AA000030000000000000000B /* PawStarUITests.swift */,
+			);
+			path = PawStarUITests;
+			sourceTree = "<group>";
+		};
+		AA000090000000000000000A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AA000013000000000000000B /* PawStar.app */,
+				AA000021000000000000000B /* PawStarTests.xctest */,
+				AA000031000000000000000B /* PawStarUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AA0000A0000000000000000A = {
+			isa = PBXGroup;
+			children = (
+				AA000050000000000000000A /* PawStar */,
+				AA000070000000000000000A /* PawStarTests */,
+				AA000080000000000000000A /* PawStarUITests */,
+				AA000090000000000000000A /* Products */,
+				AA000060000000000000000A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AA0000B0000000000000000A /* PawStar */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA0000C0000000000000000A /* Build configuration list for PBXNativeTarget "PawStar" */;
+			buildPhases = (
+				AA0000D0000000000000000A /* Sources */,
+				AA000040000000000000000A /* Frameworks */,
+				AA0000E0000000000000000A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PawStar;
+			productName = PawStar;
+			productReference = AA000013000000000000000B /* PawStar.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AA0000B1000000000000000A /* PawStarTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA0000C1000000000000000A /* Build configuration list for PBXNativeTarget "PawStarTests" */;
+			buildPhases = (
+				AA0000D1000000000000000A /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AA0000F0000000000000000A /* PBXTargetDependency */,
+			);
+			name = PawStarTests;
+			productName = PawStarTests;
+			productReference = AA000021000000000000000B /* PawStarTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		AA0000B2000000000000000A /* PawStarUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA0000C2000000000000000A /* Build configuration list for PBXNativeTarget "PawStarUITests" */;
+			buildPhases = (
+				AA0000D2000000000000000A /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AA0000F1000000000000000A /* PBXTargetDependency */,
+			);
+			name = PawStarUITests;
+			productName = PawStarUITests;
+			productReference = AA000031000000000000000B /* PawStarUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AA0000AA000000000000000A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					AA0000B0000000000000000A = {
+						CreatedOnToolsVersion = 15.0;
+					};
+					AA0000B1000000000000000A = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = AA0000B0000000000000000A;
+					};
+					AA0000B2000000000000000A = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = AA0000B0000000000000000A;
+					};
+				};
+			};
+			buildConfigurationList = AA0000CB000000000000000A /* Build configuration list for PBXProject "PawStar" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = zh_CN;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				"zh-Hans",
+			);
+			mainGroup = AA0000A0000000000000000A;
+			productRefGroup = AA000090000000000000000A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AA0000B0000000000000000A /* PawStar */,
+				AA0000B1000000000000000A /* PawStarTests */,
+				AA0000B2000000000000000A /* PawStarUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AA0000E0000000000000000A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA000011000000000000000A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AA0000D0000000000000000A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA000001000000000000000A /* PawStarApp.swift in Sources */,
+				AA000002000000000000000A /* Theme.swift in Sources */,
+				AA000003000000000000000A /* PetProfile.swift in Sources */,
+				AA000004000000000000000A /* CertificateRecord.swift in Sources */,
+				AA000005000000000000000A /* AIResultPayload.swift in Sources */,
+				AA000006000000000000000A /* HomeView.swift in Sources */,
+				AA000007000000000000000A /* HomeViewModel.swift in Sources */,
+				AA000008000000000000000A /* PhotoPickerView.swift in Sources */,
+				AA000009000000000000000A /* IDCardView.swift in Sources */,
+				AA00000A000000000000000A /* DrivingLicenseView.swift in Sources */,
+				AA00000B000000000000000A /* PreviewView.swift in Sources */,
+				AA00000C000000000000000A /* HistoryView.swift in Sources */,
+				AA00000D000000000000000A /* NetworkService.swift in Sources */,
+				AA00000E000000000000000A /* ImageProcessor.swift in Sources */,
+				AA00000F000000000000000A /* FallbackProvider.swift in Sources */,
+				AA000010000000000000000A /* SerialNumberGenerator.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA0000D1000000000000000A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA000020000000000000000A /* PawStarTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA0000D2000000000000000A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA000030000000000000000A /* PawStarUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AA0000F0000000000000000A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA0000B0000000000000000A /* PawStar */;
+			targetProxy = AA0000F2000000000000000A /* PBXContainerItemProxy */;
+		};
+		AA0000F1000000000000000A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA0000B0000000000000000A /* PawStar */;
+			targetProxy = AA0000F3000000000000000A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXContainerItemProxy section */
+		AA0000F2000000000000000A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA0000AA000000000000000A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA0000B0000000000000000A;
+			remoteInfo = PawStar;
+		};
+		AA0000F3000000000000000A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA0000AA000000000000000A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA0000B0000000000000000A;
+			remoteInfo = PawStar;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin XCBuildConfiguration section */
+		AA0000CC000000000000000A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		AA0000CD000000000000000A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = 5.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AA0000CE000000000000000A /* Debug - PawStar Target */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pawstar.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AA0000CF000000000000000A /* Release - PawStar Target */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pawstar.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		AA0000D3000000000000000A /* Debug - PawStarTests Target */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pawstar.app.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PawStar.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PawStar";
+			};
+			name = Debug;
+		};
+		AA0000D4000000000000000A /* Release - PawStarTests Target */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pawstar.app.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PawStar.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PawStar";
+			};
+			name = Release;
+		};
+		AA0000D5000000000000000A /* Debug - PawStarUITests Target */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pawstar.app.uitests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = PawStar;
+			};
+			name = Debug;
+		};
+		AA0000D6000000000000000A /* Release - PawStarUITests Target */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pawstar.app.uitests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = PawStar;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AA0000CB000000000000000A /* Build configuration list for PBXProject "PawStar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA0000CC000000000000000A /* Debug */,
+				AA0000CD000000000000000A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA0000C0000000000000000A /* Build configuration list for PBXNativeTarget "PawStar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA0000CE000000000000000A /* Debug */,
+				AA0000CF000000000000000A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA0000C1000000000000000A /* Build configuration list for PBXNativeTarget "PawStarTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA0000D3000000000000000A /* Debug */,
+				AA0000D4000000000000000A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA0000C2000000000000000A /* Build configuration list for PBXNativeTarget "PawStarUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA0000D5000000000000000A /* Debug */,
+				AA0000D6000000000000000A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+	};
+	rootObject = AA0000AA000000000000000A /* Project object */;
+}
