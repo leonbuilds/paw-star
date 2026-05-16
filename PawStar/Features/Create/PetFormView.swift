@@ -12,6 +12,7 @@ struct PetFormView: View {
     @State private var hasBirthday = false
     @State private var birthday: Date = Date()
     @State private var isSaved = false
+    @State private var savedPet: PetProfile?
 
     var body: some View {
         VStack(spacing: 20) {
@@ -45,10 +46,6 @@ struct PetFormView: View {
 
             Spacer()
 
-            NavigationLink(destination: Text("证件预览（Phase 3 实现）"), isActive: $isSaved) {
-                EmptyView()
-            }
-
             Button(action: save) {
                 Text("生成证件 🐾")
                     .font(Theme.Font.cardTitle())
@@ -63,6 +60,9 @@ struct PetFormView: View {
         .padding(20)
         .background(Theme.Color.warmWhite)
         .navigationTitle("填写信息")
+        .navigationDestination(isPresented: $isSaved) {
+            Text("证件预览（Phase 3 实现）")
+        }
     }
 
     private var avatarSection: some View {
