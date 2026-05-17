@@ -17,7 +17,7 @@ final class NetworkService {
 
     private var baseURL: String {
         Bundle.main.object(forInfoDictionaryKey: "API_BASE_URL") as? String
-        ?? "https://pawpedigree-api.workers.dev"
+        ?? "https://pawpedigree-api.paw-star.workers.dev"
     }
 
     func certify(type: CertificateType, imageData: Data, category: PetCategory) async throws -> AIResultPayload {
