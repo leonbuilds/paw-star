@@ -9,6 +9,7 @@ struct AIInferenceView: View {
     @State private var phase: InferencePhase = .loading
     @State private var progress: Double = 0
     @State private var savedRecord: CertificateRecord?
+    @State private var debugError: String = ""
     private let timer = Timer.publish(every: 0.06, on: .main, in: .common).autoconnect()
 
     var body: some View {
@@ -85,6 +86,12 @@ struct AIInferenceView: View {
                 Text("鉴定完成（备用结果）")
                     .font(Theme.Font.cardTitle())
                     .foregroundStyle(Theme.Color.primaryDark)
+                if !debugError.isEmpty {
+                    Text(debugError)
+                        .font(Theme.Font.caption(10))
+                        .foregroundStyle(.red)
+                        .padding(.horizontal, 24)
+                }
             }
         }
         .multilineTextAlignment(.center)
@@ -103,6 +110,7 @@ struct AIInferenceView: View {
             withAnimation { progress = 1.0 }
             phase = .success
         } catch {
+            debugError = "Error: \(error)"
             useFallback()
         }
     }
