@@ -4,48 +4,65 @@ import SwiftUI
 struct PedigreeCardView: View {
     let record: CertificateRecord
 
+    private let gradient = [Theme.Color.primary, Theme.Color.certGold]
+
     var body: some View {
-        VStack(spacing: 16) {
-            CardHeader(title: "萌宠品相鉴定书", english: "PawPedigree Certificate")
-            CardPhotoSection(petName: record.pet?.name ?? "未知", serialNumber: record.serialNumber, avatarData: record.pet?.avatarImageData)
-            CardDivider()
-            mainSection
-            Spacer(minLength: 0)
-            CardFooter()
+        VStack(spacing: 0) {
+            // 渐变头部
+            CardBanner(title: "萌宠品相鉴定书", english: "PAW PEDIGREE CERTIFICATE", gradient: gradient)
+
+            VStack(spacing: 14) {
+                // 头像区
+                CardAvatar(
+                    name: record.pet?.name ?? "未知",
+                    serialNumber: record.serialNumber,
+                    avatarData: record.pet?.avatarImageData,
+                    ringColor: Theme.Color.primary
+                )
+                .offset(y: -12)
+                .padding(.bottom, -12)
+
+                CardDivider(color: Theme.Color.certGold)
+
+                if let payload = record.payload {
+                    // 品种 + 等级
+                    HStack(alignment: .center) {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("品种鉴定")
+                                .font(.system(size: 10, weight: .medium)).foregroundStyle(Theme.Color.textSecondary)
+                            Text(payload.primaryLabel)
+                                .font(.system(size: 22, weight: .black, design: .rounded))
+                                .foregroundStyle(Theme.Color.primary)
+                        }
+                        Spacer()
+                        GradeBadge(grade: payload.grade, color: Theme.Color.certGold)
+                    }
+
+                    // 属性列表
+                    VStack(spacing: 8) {
+                        ForEach(payload.attributes.sorted(by: { $0.key < $1.key }), id: \.key) { k, v in
+                            AttrRow(key: k, value: v, accent: Theme.Color.primary)
+                        }
+                    }
+                    .padding(12)
+                    .background(Theme.Color.warmWhite)
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+
+                    // 描述
+                    QuoteBox(text: payload.description, accent: Theme.Color.primary)
+                }
+
+                Spacer(minLength: 0)
+                CardFooter()
+            }
+            .padding(.horizontal, 20)
+            .padding(.bottom, 16)
+            .padding(.top, 8)
         }
-        .padding(20)
         .frame(width: 350, height: 622)
         .background(Theme.Color.cardWhite)
         .clipShape(RoundedRectangle(cornerRadius: 24))
-        .shadow(color: .black.opacity(0.12), radius: 16, x: 0, y: 8)
-    }
-
-    private var mainSection: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            if let payload = record.payload {
-                HStack {
-                    Text(payload.primaryLabel).font(Theme.Font.title(24)).foregroundStyle(Theme.Color.primary)
-                    Spacer()
-                    GradeTag(grade: payload.grade)
-                }
-                VStack(alignment: .leading, spacing: 6) {
-                    ForEach(payload.attributes.sorted(by: { $0.key < $1.key }), id: \.key) { k, v in
-                        HStack {
-                            Text(Self.localizedKey(k)).font(Theme.Font.caption()).foregroundStyle(Theme.Color.textSecondary)
-                            Spacer()
-                            Text(v).font(Theme.Font.caption()).foregroundStyle(Theme.Color.textPrimary)
-                        }
-                    }
-                }
-                Text(payload.description).font(Theme.Font.body(14)).foregroundStyle(Theme.Color.textSecondary).lineLimit(3)
-            }
-        }
-    }
-
-    private static func localizedKey(_ key: String) -> String {
-        let map = ["coatColor": "毛色", "saturation": "饱和度", "breed": "品种",
-                   "weight": "体重", "age": "年龄", "origin": "产地"]
-        return map[key] ?? key
+        .shadow(color: Theme.Color.primary.opacity(0.15), radius: 20, x: 0, y: 8)
     }
 
     func render() -> UIImage {
@@ -56,9 +73,15 @@ struct PedigreeCardView: View {
 }
 
 #Preview {
-    PedigreeCardView(record: {
-        let payload = AIResultPayload.sampleCat()
-        let data = (try? JSONEncoder().encode(payload)) ?? Data()
-        return CertificateRecord(type: .pedigree, serialNumber: SerialNumberGenerator.generate(), aiResultData: data)
-    }()).padding(20).background(Theme.Color.warmWhite)
+    ScrollView {
+        PedigreeCardView(record: {
+            var p = AIResultPayload.sampleCat()
+            p.primaryLabel = "橘猫（赤金系）"
+            p.grade = "SR"
+            p.attributes = ["毛色": "橘黄", "饱和度": "88", "体型": "丰满圆润"]
+            p.description = "此猫眉眼带星，骨相端正，是难得一见的「村霸气质+御猫风骨」复合品相，四肢短而有力，是天生的沙发霸主。"
+            let data = (try? JSONEncoder().encode(p)) ?? Data()
+            return CertificateRecord(type: .pedigree, serialNumber: "PP-2026-0517-7E3A2B-9F", aiResultData: data)
+        }()).padding(20)
+    }.background(Theme.Color.warmWhite)
 }
