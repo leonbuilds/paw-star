@@ -26,7 +26,7 @@ final class NetworkService {
         var req = URLRequest(url: url)
         req.httpMethod = "POST"
         req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        req.timeoutInterval = 8
+        req.timeoutInterval = 20
 
         let body = CertifyRequest(
             type: type.rawValue,

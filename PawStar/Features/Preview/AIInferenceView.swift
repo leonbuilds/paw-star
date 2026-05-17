@@ -6,9 +6,10 @@ struct AIInferenceView: View {
     let pet: PetProfile
     let certType: CertificateType
     @Environment(\.modelContext) private var modelContext
-    @State private var phase: InferencePhase = .loading(progress: 0)
+    @State private var phase: InferencePhase = .loading
     @State private var progress: Double = 0
-    private let timer = Timer.publish(every: 0.08, on: .main, in: .common).autoconnect()
+    @State private var savedRecord: CertificateRecord?
+    private let timer = Timer.publish(every: 0.06, on: .main, in: .common).autoconnect()
 
     var body: some View {
         ZStack {
@@ -18,31 +19,21 @@ struct AIInferenceView: View {
                 pawAnimation
                 statusText
                 Spacer()
-                if case .success(let payload) = phase {
-                    NavigationLink(destination: cardView(payload: payload)) {
-                        Text("查看鉴定书 🎉")
-                            .font(Theme.Font.cardTitle())
-                            .foregroundStyle(.white)
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 16)
-                            .background(Theme.Color.primary)
-                            .clipShape(RoundedRectangle(cornerRadius: 16))
-                            .padding(.horizontal, 32)
-                    }
-                }
-                if case .fallback(let payload) = phase {
-                    NavigationLink(destination: cardView(payload: payload)) {
+                if let record = savedRecord, phase != .loading {
+                    NavigationLink(destination: cardView(record: record)) {
                         VStack(spacing: 4) {
-                            Text("查看鉴定书（离线版）")
+                            Text(phase == .success ? "查看鉴定书 🎉" : "查看鉴定书（离线版）")
                                 .font(Theme.Font.cardTitle())
                                 .foregroundStyle(.white)
-                            Text("网络不给力，用了备用结果")
-                                .font(Theme.Font.caption())
-                                .foregroundStyle(.white.opacity(0.8))
+                            if phase == .fallback {
+                                Text("网络开小差，已生成备用结果")
+                                    .font(Theme.Font.caption())
+                                    .foregroundStyle(.white.opacity(0.8))
+                            }
                         }
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 16)
-                        .background(Theme.Color.primaryDark)
+                        .background(phase == .success ? Theme.Color.primary : Theme.Color.primaryDark)
                         .clipShape(RoundedRectangle(cornerRadius: 16))
                         .padding(.horizontal, 32)
                     }
@@ -50,14 +41,12 @@ struct AIInferenceView: View {
             }
         }
         .navigationTitle("鉴定中...")
-        .navigationBarBackButtonHidden(isLoading)
-        .onReceive(timer) { _ in updateProgress() }
+        .navigationBarBackButtonHidden(phase == .loading)
+        .onReceive(timer) { _ in
+            guard phase == .loading, progress < 0.92 else { return }
+            progress += 0.004
+        }
         .task { await runInference() }
-    }
-
-    private var isLoading: Bool {
-        if case .loading = phase { return true }
-        return false
     }
 
     private var pawAnimation: some View {
@@ -70,11 +59,11 @@ struct AIInferenceView: View {
                 .stroke(Theme.Color.primary, style: StrokeStyle(lineWidth: 6, lineCap: .round))
                 .frame(width: 120, height: 120)
                 .rotationEffect(.degrees(-90))
-                .animation(.easeInOut(duration: 0.1), value: progress)
+                .animation(.linear(duration: 0.1), value: progress)
             Text("🐾")
                 .font(.system(size: 48))
-                .scaleEffect(isLoading ? 1.1 : 1.0)
-                .animation(.easeInOut(duration: 0.6).repeatForever(autoreverses: true), value: isLoading)
+                .scaleEffect(phase == .loading ? 1.1 : 1.0)
+                .animation(.easeInOut(duration: 0.6).repeatForever(autoreverses: true), value: phase == .loading)
         }
     }
 
@@ -101,33 +90,18 @@ struct AIInferenceView: View {
         .multilineTextAlignment(.center)
     }
 
-    private func updateProgress() {
-        guard isLoading, progress < 0.9 else { return }
-        progress += 0.005
-    }
-
     private func runInference() async {
         guard let imageData = pet.avatarImageData else {
-            useFallback()
-            return
+            useFallback(); return
         }
-
         do {
             let payload = try await NetworkService.shared.certify(
-                type: certType,
-                imageData: imageData,
-                category: pet.category
+                type: certType, imageData: imageData, category: pet.category
             )
-            let encoded = (try? JSONEncoder().encode(payload)) ?? Data()
-            let record = CertificateRecord(
-                type: certType,
-                serialNumber: SerialNumberGenerator.generate(),
-                aiResultData: encoded
-            )
-            record.pet = pet
-            modelContext.insert(record)
-            progress = 1.0
-            phase = .success(payload)
+            let record = saveRecord(payload: payload)
+            savedRecord = record
+            withAnimation { progress = 1.0 }
+            phase = .success
         } catch {
             useFallback()
         }
@@ -135,6 +109,15 @@ struct AIInferenceView: View {
 
     private func useFallback() {
         let payload = FallbackProvider.result(for: certType, category: pet.category)
+        let record = saveRecord(payload: payload)
+        savedRecord = record
+        withAnimation { progress = 1.0 }
+        phase = .fallback
+    }
+
+    // 保存 record 并绑定 pet，供 cardView 直接使用
+    @discardableResult
+    private func saveRecord(payload: AIResultPayload) -> CertificateRecord {
         let encoded = (try? JSONEncoder().encode(payload)) ?? Data()
         let record = CertificateRecord(
             type: certType,
@@ -143,26 +126,21 @@ struct AIInferenceView: View {
         )
         record.pet = pet
         modelContext.insert(record)
-        progress = 1.0
-        phase = .fallback(payload)
+        return record
     }
 
     @ViewBuilder
-    private func cardView(payload: AIResultPayload) -> some View {
-        let encoded = (try? JSONEncoder().encode(payload)) ?? Data()
-        let record = CertificateRecord(type: certType, serialNumber: SerialNumberGenerator.generate(), aiResultData: encoded)
+    private func cardView(record: CertificateRecord) -> some View {
         switch certType {
         case .pedigree: PedigreeCardView(record: record)
-        case .beauty: BeautyCardView(record: record)
+        case .beauty:   BeautyCardView(record: record)
         case .personality: PersonalityCardView(record: record)
         }
     }
 }
 
-enum InferencePhase {
-    case loading(progress: Double)
-    case success(AIResultPayload)
-    case fallback(AIResultPayload)
+enum InferencePhase: Equatable {
+    case loading, success, fallback
 }
 
 #Preview {

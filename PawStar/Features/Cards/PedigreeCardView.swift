@@ -31,7 +31,7 @@ struct PedigreeCardView: View {
                 VStack(alignment: .leading, spacing: 6) {
                     ForEach(payload.attributes.sorted(by: { $0.key < $1.key }), id: \.key) { k, v in
                         HStack {
-                            Text(k).font(Theme.Font.caption()).foregroundStyle(Theme.Color.textSecondary)
+                            Text(Self.localizedKey(k)).font(Theme.Font.caption()).foregroundStyle(Theme.Color.textSecondary)
                             Spacer()
                             Text(v).font(Theme.Font.caption()).foregroundStyle(Theme.Color.textPrimary)
                         }
@@ -40,6 +40,12 @@ struct PedigreeCardView: View {
                 Text(payload.description).font(Theme.Font.body(14)).foregroundStyle(Theme.Color.textSecondary).lineLimit(3)
             }
         }
+    }
+
+    private static func localizedKey(_ key: String) -> String {
+        let map = ["coatColor": "毛色", "saturation": "饱和度", "breed": "品种",
+                   "weight": "体重", "age": "年龄", "origin": "产地"]
+        return map[key] ?? key
     }
 
     func render() -> UIImage {
