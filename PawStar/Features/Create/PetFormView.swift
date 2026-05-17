@@ -61,7 +61,9 @@ struct PetFormView: View {
         .background(Theme.Color.warmWhite)
         .navigationTitle("填写信息")
         .navigationDestination(isPresented: $isSaved) {
-            Text("证件预览（Phase 3 实现）")
+            if let pet = savedPet {
+                AIInferenceView(pet: pet, certType: certType)
+            }
         }
     }
 
@@ -81,6 +83,7 @@ struct PetFormView: View {
             avatarImageData: avatarImage.jpegData(compressionQuality: 0.85)
         )
         modelContext.insert(pet)
+        savedPet = pet
         isSaved = true
     }
 }
