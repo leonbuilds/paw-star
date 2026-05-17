@@ -31,6 +31,7 @@
 		AA000017000000000000000A /* PersonalityCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000017000000000000000B /* PersonalityCardView.swift */; };
 		AA000018000000000000000A /* PetFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000018000000000000000B /* PetFormView.swift */; };
 		AA000019000000000000000A /* AIInferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000019000000000000000B /* AIInferenceView.swift */; };
+		AA00001A000000000000000A /* CardShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00001A000000000000000B /* CardShareView.swift */; };
 		AA000020000000000000000A /* PawStarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000020000000000000000B /* PawStarTests.swift */; };
 		AA000030000000000000000A /* PawStarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000030000000000000000B /* PawStarUITests.swift */; };
 /* End PBXBuildFile section */
@@ -60,6 +61,7 @@
 		AA000017000000000000000B /* PersonalityCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalityCardView.swift; sourceTree = "<group>"; };
 		AA000018000000000000000B /* PetFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetFormView.swift; sourceTree = "<group>"; };
 		AA000019000000000000000B /* AIInferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIInferenceView.swift; sourceTree = "<group>"; };
+		AA00001A000000000000000B /* CardShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardShareView.swift; sourceTree = "<group>"; };
 		AA000013000000000000000B /* PawStar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PawStar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA000020000000000000000B /* PawStarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PawStarTests.swift; sourceTree = "<group>"; };
 		AA000021000000000000000B /* PawStarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PawStarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,6 +169,7 @@
 			children = (
 				AA00000B000000000000000B /* PreviewView.swift */,
 				AA000019000000000000000B /* AIInferenceView.swift */,
+				AA00001A000000000000000B /* CardShareView.swift */,
 			);
 			path = Preview;
 			sourceTree = "<group>";
@@ -384,6 +387,7 @@
 				AA000017000000000000000A /* PersonalityCardView.swift in Sources */,
 				AA000018000000000000000A /* PetFormView.swift in Sources */,
 				AA000019000000000000000A /* AIInferenceView.swift in Sources */,
+				AA00001A000000000000000A /* CardShareView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -566,6 +570,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "保存鉴定书到你的相册";
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -595,6 +600,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "保存鉴定书到你的相册";
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

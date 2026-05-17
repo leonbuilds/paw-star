@@ -140,9 +140,18 @@ struct AIInferenceView: View {
     @ViewBuilder
     private func cardView(record: CertificateRecord) -> some View {
         switch certType {
-        case .pedigree: PedigreeCardView(record: record)
-        case .beauty:   BeautyCardView(record: record)
-        case .personality: PersonalityCardView(record: record)
+        case .pedigree:
+            CardShareView(card: PedigreeCardView(record: record)) {
+                PedigreeCardView(record: record).render()
+            }
+        case .beauty:
+            CardShareView(card: BeautyCardView(record: record)) {
+                BeautyCardView(record: record).render()
+            }
+        case .personality:
+            CardShareView(card: PersonalityCardView(record: record)) {
+                PersonalityCardView(record: record).render()
+            }
         }
     }
 }
