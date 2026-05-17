@@ -25,6 +25,12 @@
 		AA000010000000000000000A /* SerialNumberGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000010000000000000000B /* SerialNumberGenerator.swift */; };
 		AA000011000000000000000A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA000011000000000000000B /* Assets.xcassets */; };
 		AA000012000000000000000A /* SwiftData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA000012000000000000000B /* SwiftData.framework */; };
+		AA000014000000000000000A /* CardComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000014000000000000000B /* CardComponents.swift */; };
+		AA000015000000000000000A /* PedigreeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000015000000000000000B /* PedigreeCardView.swift */; };
+		AA000016000000000000000A /* BeautyCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000016000000000000000B /* BeautyCardView.swift */; };
+		AA000017000000000000000A /* PersonalityCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000017000000000000000B /* PersonalityCardView.swift */; };
+		AA000018000000000000000A /* PetFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000018000000000000000B /* PetFormView.swift */; };
+		AA000019000000000000000A /* AIInferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000019000000000000000B /* AIInferenceView.swift */; };
 		AA000020000000000000000A /* PawStarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000020000000000000000B /* PawStarTests.swift */; };
 		AA000030000000000000000A /* PawStarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000030000000000000000B /* PawStarUITests.swift */; };
 /* End PBXBuildFile section */
@@ -48,6 +54,12 @@
 		AA000010000000000000000B /* SerialNumberGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerialNumberGenerator.swift; sourceTree = "<group>"; };
 		AA000011000000000000000B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA000012000000000000000B /* SwiftData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftData.framework; path = System/Library/Frameworks/SwiftData.framework; sourceTree = SDKROOT; };
+		AA000014000000000000000B /* CardComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardComponents.swift; sourceTree = "<group>"; };
+		AA000015000000000000000B /* PedigreeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PedigreeCardView.swift; sourceTree = "<group>"; };
+		AA000016000000000000000B /* BeautyCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeautyCardView.swift; sourceTree = "<group>"; };
+		AA000017000000000000000B /* PersonalityCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalityCardView.swift; sourceTree = "<group>"; };
+		AA000018000000000000000B /* PetFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetFormView.swift; sourceTree = "<group>"; };
+		AA000019000000000000000B /* AIInferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIInferenceView.swift; sourceTree = "<group>"; };
 		AA000013000000000000000B /* PawStar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PawStar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA000020000000000000000B /* PawStarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PawStarTests.swift; sourceTree = "<group>"; };
 		AA000021000000000000000B /* PawStarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PawStarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				AA000008000000000000000B /* PhotoPickerView.swift */,
+				AA000018000000000000000B /* PetFormView.swift */,
 			);
 			path = Create;
 			sourceTree = "<group>";
@@ -141,6 +154,10 @@
 			children = (
 				AA000009000000000000000B /* IDCardView.swift */,
 				AA00000A000000000000000B /* DrivingLicenseView.swift */,
+				AA000014000000000000000B /* CardComponents.swift */,
+				AA000015000000000000000B /* PedigreeCardView.swift */,
+				AA000016000000000000000B /* BeautyCardView.swift */,
+				AA000017000000000000000B /* PersonalityCardView.swift */,
 			);
 			path = Cards;
 			sourceTree = "<group>";
@@ -149,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				AA00000B000000000000000B /* PreviewView.swift */,
+				AA000019000000000000000B /* AIInferenceView.swift */,
 			);
 			path = Preview;
 			sourceTree = "<group>";
@@ -360,6 +378,12 @@
 				AA00000E000000000000000A /* ImageProcessor.swift in Sources */,
 				AA00000F000000000000000A /* FallbackProvider.swift in Sources */,
 				AA000010000000000000000A /* SerialNumberGenerator.swift in Sources */,
+				AA000014000000000000000A /* CardComponents.swift in Sources */,
+				AA000015000000000000000A /* PedigreeCardView.swift in Sources */,
+				AA000016000000000000000A /* BeautyCardView.swift in Sources */,
+				AA000017000000000000000A /* PersonalityCardView.swift in Sources */,
+				AA000018000000000000000A /* PetFormView.swift in Sources */,
+				AA000019000000000000000A /* AIInferenceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

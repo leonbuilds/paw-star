@@ -65,7 +65,7 @@ private struct EntryCard: View {
     }
 
     var body: some View {
-        NavigationLink(destination: Text("照片选择（即将实现）")) {
+        NavigationLink(destination: PhotoPickerView(certType: type)) {
             HStack(spacing: 16) {
                 Text(icon)
                     .font(.system(size: 36))
